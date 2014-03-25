@@ -1,10 +1,12 @@
 emu.softreset()
 emu.speedmode("maximum")
-state = savestate.object();
+states = {savestate.object(),savestate.object()}
 time = 0
 goal = 0
-savetime = 150
+savetime = 100
 emu.message("HI")
+
+which = true
 
 function r(thresh) -- random boolean
   if math.random() > thresh then return true else return false end
@@ -16,7 +18,9 @@ for n = 0, 200, 1 do
   emu.frameadvance()
 end
 
-savestate.save(state)
+
+savestate.save(states[1])
+savestate.save(states[2])
 emu.message("Saved initial state")
 
 xpos2=0
@@ -26,17 +30,16 @@ while true do
   lives = memory.readbyte(0x075A)
   ypos  = 176 - memory.readbyte(0x00CE)
   sprite= memory.readbyte(0x06D5)
-  --xpos  = memory.readbyte(0x006D)
-  if xpos2 == 127 then xpos=xpos+1 end
-  xpos2 = memory.readbyte(0x071C)%128
+  xpos  = memory.readbyte(0x006D)
+  xpos2 = memory.readbyte(0x0086)
   yvel  = memory.readbyte(0x009F)
   
-  xpos3=128*xpos+xpos2
+  xpos3=256*xpos+xpos2
 
   gui.text(50,50,"ypos: "..ypos)
   gui.text(50,60,"time: "..time)
   gui.text(50,70,"xpos: "..xpos.."."..xpos2)
-  gui.text(50,80,"yards: "..goal-xpos3)
+  gui.text(50,80,"yards: "..xpos3)
   gui.text(50,90,"yvel: "..yvel)
 
   if memory.readbyte(0x001D) == 0x03 
@@ -44,12 +47,25 @@ while true do
          goal=-1
          time=-1000
   end
+  
+  if memory.readbyte(0x000E) == 0x02
+    then emu.message("pipe")
+         goal =-1
+         time = -1000
+  end
+
 
   if ypos<-50    or 
      sprite==176 or
      time > savetime 
-    then savestate.load(state) 
-         emu.message("You died and tried to load")
+    then 
+         if time < -40 or goal-xpos>20
+           then savestate.load(states[2])
+                goal=goal-100
+                emu.message("loaded oldstate")
+           else savestate.load(states[1]) 
+                emu.message("Loaded newstate")
+         end
          time=-50
   end
 
@@ -57,7 +73,9 @@ while true do
   if time > (savetime - 10) 
      and yvel==0
      and xpos3>=goal
-    then savestate.save(state); time=0
+    then savestate.save(states[1])
+         if ypos==0 then savestate.save(states[2]) end
+         time=0
          emu.message("Saving state")
          goal=xpos3+150
   end
