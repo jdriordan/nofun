@@ -54,7 +54,7 @@ function update_bytes()
   sprite= memory.readbyte(0x06D5)
   xpos  = memory.readbyte(0x006D)
   xpos2 = memory.readbyte(0x0086)
-  yvel  = memory.readbyte(0x009F)
+  yvel  = -memory.readbytesigned(0x009F)
   bowser= memory.readbyte(0x0723)  
   bowhp = memory.readbyte(0x0483)
   xpos3=256*xpos+xpos2 -- this is the actual distance
@@ -88,13 +88,14 @@ function main()
          skip(400)
   end
 
-  dead =  ((ypos< -50)  or 
+  dead =  ((ypos< -74)  or 
           sprite==176 or
           time > savetime)
 
   --dies
   -- watch out for jumping higher than the screen
   if dead then 
+         emu.message("y: "..ypos.." vy: "..yvel)
          if chances==0 then --emu.pause()
                 savestate.load(states[old])
                 savestate.save(states[new])
@@ -116,16 +117,8 @@ function main()
          end
   end
 
-  
-  if bowser == 1 and ypos>0
-    then emu.message("bowsing")
-         --time=time+1
-         --emu.pause()
-         --skip(333)
-  end
-
   if time > 100--(savetime - 10) 
-  --   and yvel==0
+     and ypos>=0
      and (xpos3>=goal or goal-xpos3>2000)
     then swap()
          savestate.save(states[new])
@@ -138,6 +131,7 @@ function main()
          goalold=goal
   end
   
+  -- the magic
   joypad.set(1,{B=1,A=r(0.1),right=r(0.15)});
 
   emu.frameadvance() -- This essentially tells FCEUX to keep running
