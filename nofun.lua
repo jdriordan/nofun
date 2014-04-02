@@ -50,14 +50,16 @@ end
 
 function update_bytes()
   lives = memory.readbyte(0x075A)
-  ypos  = 176 - memory.readbyte(0x00CE)
+  ypos1 = memory.readbyte(0x00CE)
+  ypos2 = memory.readbyte(0x00B5)
   sprite= memory.readbyte(0x06D5)
   xpos  = memory.readbyte(0x006D)
   xpos2 = memory.readbyte(0x0086)
   yvel  = -memory.readbytesigned(0x009F)
   bowser= memory.readbyte(0x0723)  
   bowhp = memory.readbyte(0x0483)
-  xpos3=256*xpos+xpos2 -- this is the actual distance
+  xpos3 =256*xpos+xpos2 -- this is the actual distance
+  ypos  =ypos1*ypos2
 end
 
 
@@ -88,7 +90,7 @@ function main()
          skip(400)
   end
 
-  dead =  ((ypos< -74)  or 
+  dead =  (ypos>176 or
           sprite==176 or
           time > savetime)
 
@@ -107,7 +109,8 @@ function main()
 		chances=10
                 savetime=100
 	   else chances=chances-1
-                savetime=100*(10-chances)
+                savetime=100
+                if chances==0 then savetime=1000 end
                 savestate.load(states[new])
                 emu.frameadvance()
                 update_bytes()
