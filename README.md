@@ -16,8 +16,10 @@ The project was inspired by [`tom7`'s `playfun` and `learnfun`][1]. This approac
 Status
 ----
 
-In it's current incarnation `nofun` is capable of reaching level 2-1 in tens of minutes but it does get stuck at that stupid trampoline and it is unclear whether or not, given enough time, he will overcome it.
+`nofun`'s furthest level so far is: ## 3-2
 
-There are numerous problems with the code, logically and stylistically,
+There are several hardcoded conditions which try to guess whether the code should either wait longer, or kill Mario pre-emptively but they could be removed. 
+
+Additionally here are numerous problems with the code, logically and stylistically,
 
 [1]: http://www.cs.cmu.edu/~tom7/mario/
