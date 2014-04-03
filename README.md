@@ -16,13 +16,14 @@ The project was inspired by [`tom7`'s `playfun` and `learnfun`][1]. This approac
 Status
 ----
 
-`nofun`'s furthest level so far is: 
-~~1-1~~
-~~1-2~~
-~~1-4~~
-~~2-1~~
-~~3-2~~
-**3-4**
+`nofun`'s furthest level so far is:  
+~~1-1~~  
+~~1-2~~  
+~~1-4~~  
+~~2-1~~  
+~~3-2~~  
+~~3-4~~  
+**4-4**  
 
 There are several hardcoded conditions which try to guess whether the code should either wait longer, or kill Mario pre-emptively but they could be removed. 
 
