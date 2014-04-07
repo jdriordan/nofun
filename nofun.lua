@@ -123,9 +123,11 @@ function main()
 
 
 -- save if we think we can
-  if --time > 110
+  if time > 70
+    -- maybe check here how long to die from freefall
+    -- like (ypos+jump)/5
     -- and ypos>=0
-    (xpos3>=goal or goal-xpos3>2000)
+    and (xpos3>=goal or goal-xpos3>2000)
     then swap()
          savestate.save(states[new])
          time=0
