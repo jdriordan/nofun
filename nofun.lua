@@ -111,12 +111,12 @@ function main()
 --         skip(1000)
 --  end
   
---  if memory.readbyte(0x000E) == 0x02
---    then emu.message("pipe")
---         goal =-1
---         --time = -1000
---         skip(300)
---  end
+  if memory.readbyte(0x000E) == 0x02
+    then emu.message("pipe")
+         goal =-1
+         --time = -1000
+         skip(300)
+  end
 
 -- save time by pre-emptively dying
   if ypos>176 or sprite==176 then die() end
