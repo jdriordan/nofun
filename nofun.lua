@@ -125,7 +125,6 @@ function main()
 -- save if we think we can
   if time > 70
     -- maybe check here how long to die from freefall
-    -- like (ypos+jump)/5
     -- and ypos>=0
     and (xpos3>=goal or goal-xpos3>2000)
     then swap()
