@@ -11,10 +11,13 @@ function buttonString()
 end
 
 function saveLearningData()
-	 emu.message(buttonString())
-	 gui.savescreenshotas(buttonString()..".png")
+	 -- emu.message(buttonString())
+	 gui.savescreenshotas("current_frame.png")
+	 os.execute("./simplify.sh "..buttonString())
+end
 
 
+function main()
   if 0==time%100 then saveLearningData() end
   emu.frameadvance() -- This essentially tells FCEUX to keep running
   time=time+1
