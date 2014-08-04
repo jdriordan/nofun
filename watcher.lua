@@ -13,7 +13,7 @@ end
 function saveLearningData()
 	 -- emu.message(buttonString())
 	 gui.savescreenshotas("current_frame.png")
-	 os.execute("./simplify.sh "..buttonString())
+	 os.execute("./sorter.sh "..buttonString())
 end
 
 
