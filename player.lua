@@ -16,7 +16,7 @@ function main()
 	emu.message("simplified the image!")
 	bot = io.popen("./do.py")
 	cmd = string2table(bot:read(8))
-	joypad.set(1,buttons)
+	joypad.set(1,cmd)
 	emu.frameadvance()
 	bot:close()
 end
