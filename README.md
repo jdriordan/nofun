@@ -1,6 +1,24 @@
 `nofun` - の糞
 ====
 
+Status
+----
+
+In a shocking turn of events this approach actually works!
+
+It really, really, *works*.
+
+To qualify the above statement, after two plays of `1-1` as training data, and banning `nofun` from pressing no buttons at all, it managed to kill the first goomba (in a way that I hadn't done in the training sessions) and jump over the first pipe.
+
+What's Next
+----
+
+ - If the screenshot isn't changing try a new input
+ - Use TAS recordings as training data
+ - Use pipes and a server-client approach to avoid loading the bot each time (for speed)
+ - Try a different game
+
+
 About
 ----
 
@@ -8,7 +26,7 @@ Its original purpose of this program was to see how far a minimal almost-brute-f
 
 The scope has since been expanded based on feedback and the author's boundless ambition.
 
-In its current state the program is brutally general. It doesn't rely on any particular game, or even particular system (any emulator supporting `Lua` should do). In essence it's a lua-bash-python glue-ball which records screenshots and input from an emulator run, processes them (this isn't necessary) and uses them to machine-learn to play the game, producing a function which guesses suitable inputs given a screenshot.
+In its current state the program is brutally general. It doesn't rely on any particular game, or even particular system (any emulator supporting `Lua` should do). In essence it's a lua-bash-python glue-ball which records screenshots and input from an emulator run, simplifies themand uses them to machine-learn to play the game, producing a function which guesses suitable inputs given a screenshot. It is then able to feed these guesses back into the emulator and so on, in effect playing the game as it learned to do.
 
 
 Goal
@@ -20,10 +38,6 @@ The current goal is to get `nofun`  to actually play them games by machine learn
 
 The advantage of the current approach over the old one is that `nofun` should be able to play without savestates and memory access, all things going well it may even manage to play in real-time on a console, but that is rather optimistic.
 
-Status
-----
-
-`nofun` isn't very good at playing at the moment, but is capable of giving its opinion on suitable inputs given a screenshot. The next step is to pass this back to the emulator so that we can play games again instead of just thinking about them.
 
 
 [1]: http://www.cs.cmu.edu/~tom7/mario/
