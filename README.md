@@ -17,6 +17,8 @@ What's Next
  - Use TAS recordings as training data
  - Use pipes and a server-client approach to avoid loading the bot each time (for speed)
  - Try a different game
+ - Add instructions, in case I'm not the only one in the world interested in this
+ - I have no idea how to (properly) use scikit-learn, maybe some outside help would be good here
 
 
 About
