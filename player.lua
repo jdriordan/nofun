@@ -1,6 +1,7 @@
 --emu.softreset()
 --for i=1,300,1 do emu.frameadvance() end
 emu.message("hi")
+gui.savescreenshotas("temp_frame.png")
 
 function string2table(s)
 	emu.message("requested "..s)
