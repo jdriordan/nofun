@@ -28,7 +28,7 @@ Its original purpose of this program was to see how far a minimal almost-brute-f
 
 The scope has since been expanded based on feedback and the author's boundless ambition.
 
-In its current state the program is brutally general. It doesn't rely on any particular game, or even particular system (any emulator supporting `Lua` should do). In essence it's a lua-bash-python glue-ball which records screenshots and input from an emulator run, simplifies themand uses them to machine-learn to play the game, producing a function which guesses suitable inputs given a screenshot. It is then able to feed these guesses back into the emulator and so on, in effect playing the game as it learned to do.
+In its current state the program is brutally general. It doesn't rely on any particular game, or even particular system (any emulator supporting `Lua` should do). In essence it's a lua-bash-python glue-ball which records screenshots and input from an emulator run, simplifies them and uses them to machine-learn to play the game, producing a function which guesses suitable inputs given a screenshot. It is then able to feed these guesses back into the emulator and so on, in effect playing the game as it learned to do.
 
 
 Goal
